@@ -8,14 +8,15 @@ jobs:
       - checkout
       - setup_remote_docker:
           docker_layer_caching: true
-      - run:
-          name: "Install pybiolib"
-          command: |
-            apk update
-            apk add \
-              python3.8 \
-              py3-pip
-            pip install pybiolib
+
+#      - run:
+#          name: "Install pybiolib"
+#          command: |
+#            apk update
+#            apk add \
+#              python3.8 \
+#              py3-pip
+#            pip install pybiolib
 
       - run:
           name: "Build Docker Image"
