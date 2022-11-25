@@ -9,22 +9,20 @@ jobs:
       - setup_remote_docker:
           docker_layer_caching: true
 
+      - run:
+          name: "Install pybiolib"
+          command: |
+            apk update
+            apk add \
+              python3.8 \
+
 #      - run:
-#          name: "Install pybiolib"
-#          command: |
-#            apk update
-#            apk add \
-#              python3.8 \
-#              py3-pip
-#            pip install pybiolib
-
-      - run:
-          name: "Build Docker Image"
-          command: docker build -t rfdesign . -f docker/Dockerfile
-
-      - run:
-          name : biolib push rfdesign
-          command: biolib push damgaard22/rfdesign
+#          name: "Build Docker Image"
+#          command: docker build -t rfdesign . -f docker/Dockerfile
+#
+#      - run:
+#          name : biolib push rfdesign
+#          command: biolib push damgaard22/rfdesign
 
 workflows:
   build:
