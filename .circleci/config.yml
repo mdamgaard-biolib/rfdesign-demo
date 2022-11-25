@@ -5,16 +5,15 @@ jobs:
       - image: docker:17.05.0-ce-git
 
     steps:
-      - checkout
-      - setup_remote_docker:
-          docker_layer_caching: true
-
       - run:
           name: "Install pybiolib"
           command: |
             apk update
             apk add \
               python3.8 \
+#      - checkout
+#      - setup_remote_docker:
+#          docker_layer_caching: true
 
 #      - run:
 #          name: "Build Docker Image"
