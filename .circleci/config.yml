@@ -11,8 +11,8 @@ jobs:
       - run:
           name: "Install pybiolib"
           command: |
-            apk udate
-            apk add --update --no-cache \
+            apk update
+            apk add --no-cache \
               python3 \
               py3-pip
             pip install --upgrade pip
