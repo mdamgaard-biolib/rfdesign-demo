@@ -4,8 +4,8 @@ on: push
 
 env:
     BIOLIB_LOG: debug
-    BIOLIB_PROJECT_URI: YOUR_TEAM/YOUR_APP
-    LOCAL_DOCKER_TAG: YOUR_APP_DOCKER_TAG:latest
+    BIOLIB_PROJECT_URI: damgaard22/demo
+    LOCAL_DOCKER_TAG: rfdesign:latest
 
 jobs:
     build-and-publish:
@@ -19,7 +19,7 @@ jobs:
                     submodules: true
 
             -   name: Build docker image
-                run: docker build -t $LOCAL_DOCKER_TAG .
+                run: docker build -t $LOCAL_DOCKER_TAG . -f docker/Dockerfile
 
             -   name: Publish new version to BioLib if on main branch
                 if: ${{ github.ref == 'refs/heads/main' }}
