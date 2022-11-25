@@ -8,14 +8,15 @@ jobs:
       - checkout
       - setup_remote_docker
       - run:
+          name: "Install pybiolib"
+          command: pip3 install pybiolib
+      - run:
           name: "Build Docker Image"
           command: docker build -t rfdesign . -f docker/Dockerfile
 
       - run:
           name : biolib push rfdesign
           command: biolib push damgaard22/rfdesign
-
-                    
 
 workflows:
   build:
