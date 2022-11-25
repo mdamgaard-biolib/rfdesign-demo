@@ -15,7 +15,8 @@ jobs:
             apk add \
               python3 \
               py3-pip
-            pip3 install pybiolib
+            pip3 install --upgrade pip
+            pip install pybiolib
 
       - run:
           name: "Build Docker Image"
