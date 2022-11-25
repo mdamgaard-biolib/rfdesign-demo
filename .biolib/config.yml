@@ -11,7 +11,7 @@ modules:
     default_machine: 'gpu.small'
 
     large_file_systems:
-      - id: alphafold/params
+      - uri: alphafold/params
         target_path: /software/mlfold/alphafold-data/
 
 arguments: []
