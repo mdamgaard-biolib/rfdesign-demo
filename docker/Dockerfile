@@ -19,17 +19,6 @@ RUN git clone --depth 1 --branch main https://github.com/RosettaCommons/RFDesign
     && wget -nv -P hallucination/weights/rf_Nov05 http://files.ipd.uw.edu/pub/rfdesign/weights/BFF_last.pt \
     && wget -nv -P inpainting/weights/ http://files.ipd.uw.edu/pub/rfdesign/weights/BFF_mix_epoch25.pt
 
-# Download AlphaFold2 parameters.
-# AlphaFold is used to evaluate the rfdesign results.
-# The /software/mlfold stuff is a hack because the rfdesign af2_metrics.py
-# script has that path hardcoded.
-RUN mkdir -p alphafold-params \
-    && wget -nv https://storage.googleapis.com/alphafold/alphafold_params_2022-03-02.tar -O params.tar \
-    && tar --extract --verbose --file=params.tar --directory=alphafold-params --preserve-permissions \
-    && rm -f params.tar \
-    && mkdir -p /software/mlfold/alphafold-data \
-    && ln -s /root/alphafold-params /software/mlfold/alphafold-data/params
-
 RUN conda update -n base -c defaults conda \
   && conda config --set ssl_verify no \
   && conda init bash \

@@ -1,0 +1,28 @@
+name: CI
+
+on: push
+
+env:
+    BIOLIB_LOG: debug
+    BIOLIB_PROJECT_URI: YOUR_TEAM/YOUR_APP
+    LOCAL_DOCKER_TAG: YOUR_APP_DOCKER_TAG:latest
+
+jobs:
+    build-and-publish:
+        name: Build Docker image and publish if on main
+        runs-on: self-hosted
+        steps:
+            -   name: Checkout
+                uses: actions/checkout@v2
+                with:
+                    fetch-depth: 2
+                    submodules: true
+
+            -   name: Build docker image
+                run: docker build -t $LOCAL_DOCKER_TAG .
+
+            -   name: Publish new version to BioLib if on main branch
+                if: ${{ github.ref == 'refs/heads/main' }}
+                run: biolib push $BIOLIB_PROJECT_URI
+                env:
+                    BIOLIB_TOKEN: ${{ secrets.BIOLIB_TOKEN }}
