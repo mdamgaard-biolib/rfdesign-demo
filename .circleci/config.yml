@@ -13,8 +13,6 @@ jobs:
           command: pip3 install pybiolib
 
       - checkout
-      - setup_remote_docker:
-          docker_layer_caching: true
 
       - run:
           name: "Build Docker Image"
