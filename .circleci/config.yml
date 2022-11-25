@@ -10,7 +10,7 @@ jobs:
           command: |
             apk update
             apk add \
-              python3.8 \
+              python3==3.11.0-r2 \
 #      - checkout
 #      - setup_remote_docker:
 #          docker_layer_caching: true
