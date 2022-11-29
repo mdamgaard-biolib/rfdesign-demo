@@ -15,7 +15,7 @@ jobs:
       - run:
           name: "Build Docker Image"
           command: docker build -t rfdesign . -f docker/Dockerfile
-0
+
       - run:
           name : biolib push rfdesign
           command: biolib push Demo-vcf9/demo
