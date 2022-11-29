@@ -4,7 +4,7 @@ modules:
     image: 'local-docker://rfdesign:latest'
     command: python3 hallucination/hallucinate.py
     input_files:
-      - COPY / /hello/
+      - COPY / /hello/1/
     output_files:
       - COPY /output/ /
 
