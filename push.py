@@ -1,6 +1,5 @@
 import warnings
 import os
-os.environ['REQUESTS_CA_BUNDLE'] = os.getenv('DOCKER_CERT_PATH')
 import contextlib
 from biolib.biolib_push import push_application
 
@@ -39,4 +38,5 @@ def no_ssl_verification():
             except:
                 pass
 
+os.environ.pop('REQUESTS_CA_BUNDLE')
 push_application('Demo-vcf9/demo', '.', app_version_to_copy_images_from=None, is_dev_version=None)
