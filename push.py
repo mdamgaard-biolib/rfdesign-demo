@@ -38,4 +38,4 @@ def no_ssl_verification():
                 pass
 
 with no_ssl_verification():
-    push_application('Demo-vcf9/demo', '.')
+    push_application('Demo-vcf9/demo', '.', app_version_to_copy_images_from=None, is_dev_version=None)
