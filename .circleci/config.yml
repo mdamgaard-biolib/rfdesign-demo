@@ -22,8 +22,8 @@ jobs:
       - run:
           name : biolib push rfdesign
           command: biolib push Demo-vcf9/demo
-            environment:
-              DOCKER_TLS_VERIFY: 0
+          environment:
+            DOCKER_TLS_VERIFY: 0
 
 #      - run:
 #          name: "ls"
