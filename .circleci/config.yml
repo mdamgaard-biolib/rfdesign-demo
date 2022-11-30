@@ -19,17 +19,19 @@ jobs:
 #          environment:
 #            -  DOCKER_BUILDKIT=1
 
+      - run:
+          name : biolib push rfdesign
+          command: biolib push Demo-vcf9/demo
+            environment:
+              DOCKER_TLS_VERIFY: 0
+
 #      - run:
-#          name : biolib push rfdesign
-#          command: biolib push Demo-vcf9/demo
-
-      - run:
-          name: "ls"
-          command: ls
-
-      - run:
-          name: "Try to push"
-          command: python3 push.py
+#          name: "ls"
+#          command: ls
+#
+#      - run:
+#          name: "Try to push"
+#          command: python3 push.py
 
 
 workflows:
