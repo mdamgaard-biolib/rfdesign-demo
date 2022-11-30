@@ -29,7 +29,7 @@ jobs:
 
       - run:
           name: "Try to push"
-          command: python3 rfdesign-demo/push.py
+          command: python3 push.py
 
 
 workflows:
