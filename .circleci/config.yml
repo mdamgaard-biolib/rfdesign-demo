@@ -7,18 +7,21 @@ jobs:
 
     steps:
       - run:
-          name: "Install pybiolib"
-          command: pip3 install pybiolib
+          name: Check Images
+          command: docker images
+      # - run:
+      #     name: "Install pybiolib"
+      #     command: pip3 install pybiolib
 
-      - checkout
+      # - checkout
 
-      - run:
-          name: "Build Docker Image"
-          command: docker build -t rfdesign . -f docker/Dockerfile
+      # - run:
+      #     name: "Build Docker Image"
+      #     command: docker build -t rfdesign . -f docker/Dockerfile
 
-      - run:
-          name : biolib push rfdesign
-          command: biolib push Demo-vcf9/demo
+      # - run:
+      #     name : biolib push rfdesign
+      #     command: biolib push Demo-vcf9/demo
 
 workflows:
   build:
