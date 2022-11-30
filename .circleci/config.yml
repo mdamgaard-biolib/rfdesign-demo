@@ -15,12 +15,16 @@ jobs:
           docker_layer_caching: true
 
       - run:
-          name: "Build Docker Image"
-          command: docker build -t rfdesign . -f docker/Dockerfile
+          name: "Test"
+          command: python3 docker_test.py
 
-      - run:
-          name : biolib push rfdesign
-          command: biolib push Demo-vcf9/demo
+#      - run:
+#          name: "Build Docker Image"
+#          command: docker build -t rfdesign . -f docker/Dockerfile
+#
+#      - run:
+#          name : biolib push rfdesign
+#          command: biolib push Demo-vcf9/demo
 
 workflows:
   build:
