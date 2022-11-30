@@ -1,3 +1,3 @@
 import docker
 client = docker.from_env()
-print(client.info())
+print(client.info(timeout=4000))

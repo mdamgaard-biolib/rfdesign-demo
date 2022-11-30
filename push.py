@@ -37,5 +37,4 @@ def no_ssl_verification():
             except:
                 pass
 
-with no_ssl_verification():
-    push_application('Demo-vcf9/demo', '.', app_version_to_copy_images_from=None, is_dev_version=None)
+push_application('Demo-vcf9/demo', '.', app_version_to_copy_images_from=None, is_dev_version=None)

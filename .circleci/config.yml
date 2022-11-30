@@ -16,7 +16,7 @@ jobs:
 
       - run:
           name: "Test docker client from"
-          command: python3 docker_test.py
+          command: python3 push.py
 
 #      - run:
 #          name: "Build Docker Image"
