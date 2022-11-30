@@ -15,27 +15,12 @@ jobs:
           docker_layer_caching: true
 
       - run:
-          name: "Test docker client from"
-          command: python3 push.py
+          name: "Build Docker Image"
+          command: docker build -t rfdesign . -f docker/Dockerfile
 
-#      - run:
-#          name: "Build Docker Image"
-#          command: docker build -t rfdesign . -f docker/Dockerfile
-##          environment:
-#            -  DOCKER_BUILDKIT=1
-#
-#      - run:
-#          name : biolib push rfdesign
-#          command: export DOCKER_TLS_VERIFY=0 && biolib push Demo-vcf9/demo
-
-#      - run:
-#          name: "ls"
-#          command: ls
-#
-#      - run:
-#          name: "Try to push"
-#          command: python3 push.py
-
+      - run:
+          name : biolib push rfdesign
+          command: biolib push Demo-vcf9/demo
 
 workflows:
   build:
