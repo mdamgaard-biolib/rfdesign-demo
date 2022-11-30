@@ -1,4 +1,6 @@
 import warnings
+import os
+os.environ['REQUESTS_CA_BUNDLE'] = os.getenv('DOCKER_CERT_PATH')
 import contextlib
 from biolib.biolib_push import push_application
 
