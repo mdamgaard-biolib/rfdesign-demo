@@ -6,22 +6,35 @@ jobs:
       docker_layer_caching: true
 
     steps:
-      - run:
-          name: Check Images
-          command: docker images
-      # - run:
-      #     name: "Install pybiolib"
-      #     command: pip3 install pybiolib
+       - run:
+           name: Check Images
+           command: docker images
 
-      # - checkout
+#       - run:
+#           name: "Install pybiolib"
+#           command: pip3 install pybiolib
 
-      # - run:
-      #     name: "Build Docker Image"
-      #     command: docker build -t rfdesign . -f docker/Dockerfile
+       - checkout
 
-      # - run:
-      #     name : biolib push rfdesign
-      #     command: biolib push Demo-vcf9/demo
+       - run:
+           name: "Build Docker Image"
+           command: docker build -t rfdesign . -f docker/Dockerfile
+
+       - run:
+           name: Check Images Again
+           command: docker images
+
+       - run:
+           name: "Build Docker Image depending on RFDesign"
+           command: docker build -t rfdesign-dep .
+
+       - run:
+           name: Check Images Final
+           command: docker images
+
+#       - run:
+#           name : biolib push rfdesign
+#           command: biolib push Demo-vcf9/demo
 
 workflows:
   build:

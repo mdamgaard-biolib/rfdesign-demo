@@ -19,39 +19,39 @@ RUN git clone --depth 1 --branch main https://github.com/RosettaCommons/RFDesign
     && wget -nv -P hallucination/weights/rf_Nov05 http://files.ipd.uw.edu/pub/rfdesign/weights/BFF_last.pt \
     && wget -nv -P inpainting/weights/ http://files.ipd.uw.edu/pub/rfdesign/weights/BFF_mix_epoch25.pt
 
-RUN conda update -n base -c defaults conda \
-  && conda config --set ssl_verify no \
-  && conda init bash \
-  && conda clean -afy
-
-# Note that we are using a different version of pytorch than recommended
-# in RFDesign readme (suggested version is pytorch=1.10.1)
-RUN conda create -n rfdesign-cuda \
-    python=3.8 \
-    pytorch=1.11 \
-    dgl-cuda11.3 \
-    pyg \
-    numpy==1.21.5 scipy==1.7.3 requests==2.28.1 packaging pip \
-    openmm==7.5.1 \
-    -c pytorch -c dglteam -c pyg -c conda-forge
-
-RUN /root/miniconda3/envs/rfdesign-cuda/bin/pip install \
-        https://github.com/openmm/pdbfixer/archive/refs/tags/v1.7.tar.gz \
-        icecream==2.1.3 \
-        lie_learn==0.0.1.post1 \
-        opt_einsum==3.3.0 \
-        e3nn==0.3.4 \
-    && /root/miniconda3/envs/rfdesign-cuda/bin/pip install \
-        "jaxlib[cuda]==0.1.69" \
-        "jax[cuda]==0.2.14" \
-        -f https://storage.googleapis.com/jax-releases/jax_cuda_releases.html \
-    && /root/miniconda3/envs/rfdesign-cuda/bin/pip install \
-        dm-tree==0.1.6 \
-        dm-haiku==0.0.4 \
-        absl-py==1.0.0 \
-        ml-collections==0.1.0 \
-        tensorflow-gpu==2.9.0 \
-        biopython==1.79 \
-    && conda clean -afy
+#RUN conda update -n base -c defaults conda \
+#  && conda config --set ssl_verify no \
+#  && conda init bash \
+#  && conda clean -afy
+#
+## Note that we are using a different version of pytorch than recommended
+## in RFDesign readme (suggested version is pytorch=1.10.1)
+#RUN conda create -n rfdesign-cuda \
+#    python=3.8 \
+#    pytorch=1.11 \
+#    dgl-cuda11.3 \
+#    pyg \
+#    numpy==1.21.5 scipy==1.7.3 requests==2.28.1 packaging pip \
+#    openmm==7.5.1 \
+#    -c pytorch -c dglteam -c pyg -c conda-forge
+#
+#RUN /root/miniconda3/envs/rfdesign-cuda/bin/pip install \
+#        https://github.com/openmm/pdbfixer/archive/refs/tags/v1.7.tar.gz \
+#        icecream==2.1.3 \
+#        lie_learn==0.0.1.post1 \
+#        opt_einsum==3.3.0 \
+#        e3nn==0.3.4 \
+#    && /root/miniconda3/envs/rfdesign-cuda/bin/pip install \
+#        "jaxlib[cuda]==0.1.69" \
+#        "jax[cuda]==0.2.14" \
+#        -f https://storage.googleapis.com/jax-releases/jax_cuda_releases.html \
+#    && /root/miniconda3/envs/rfdesign-cuda/bin/pip install \
+#        dm-tree==0.1.6 \
+#        dm-haiku==0.0.4 \
+#        absl-py==1.0.0 \
+#        ml-collections==0.1.0 \
+#        tensorflow-gpu==2.9.0 \
+#        biopython==1.79 \
+#    && conda clean -afy
 
 COPY run.sh run.sh
