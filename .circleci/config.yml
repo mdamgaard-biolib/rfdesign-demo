@@ -1,40 +1,35 @@
 version: 2.1
 jobs:
   build:
-    machine:
-      image: ubuntu-2004:202104-01
-      docker_layer_caching: true
+    docker:
+      - image: cimg/python:3.8.4
 
     steps:
-       - run:
-           name: Check Images
-           command: docker images
+      - run:
+          name: "Install pybiolib"
+          command: pip3 install pybiolib
 
-#       - run:
-#           name: "Install pybiolib"
-#           command: pip3 install pybiolib
+      - checkout
+      - setup_remote_docker:
+          docker_layer_caching: true
 
-       - checkout
+      - run:
+          name: "Build Docker Image"
+          command: docker build -t rfdesign . -f docker/Dockerfile
+#          environment:
+#            -  DOCKER_BUILDKIT=1
 
-       - run:
-           name: "Build Docker Image"
-           command: docker build -t rfdesign . -f docker/Dockerfile
+#      - run:
+#          name : biolib push rfdesign
+#          command: biolib push Demo-vcf9/demo
 
-       - run:
-           name: Check Images Again
-           command: docker images
+      - run:
+          name: "ls"
+          command: ls
 
-       - run:
-           name: "Build Docker Image depending on RFDesign"
-           command: docker build -t rfdesign-dep .
-
-       - run:
-           name: Check Images Final
-           command: docker images
-
-#       - run:
-#           name : biolib push rfdesign
-#           command: biolib push Demo-vcf9/demo
+      - run:
+          name: "Try to push"
+          command: python3 rfdesign-demo/push.py
 
 workflows:
   build:

@@ -13,27 +13,27 @@ RUN apt-get update \
     && bash Miniconda3-latest-Linux-x86_64.sh -b \
     && rm -f Miniconda3-latest-Linux-x86_64.sh \
     && conda --version
-
-RUN git clone --depth 1 --branch main https://github.com/RosettaCommons/RFDesign.git \
-    && cd RFDesign \
-    && wget -nv -P hallucination/weights/rf_Nov05 http://files.ipd.uw.edu/pub/rfdesign/weights/BFF_last.pt \
-    && wget -nv -P inpainting/weights/ http://files.ipd.uw.edu/pub/rfdesign/weights/BFF_mix_epoch25.pt
-
-RUN conda update -n base -c defaults conda \
-  && conda config --set ssl_verify no \
-  && conda init bash \
-  && conda clean -afy
-
-# Note that we are using a different version of pytorch than recommended
-# in RFDesign readme (suggested version is pytorch=1.10.1)
-RUN conda create -n rfdesign-cuda \
-    python=3.8 \
-    pytorch=1.11 \
-    dgl-cuda11.3 \
-    pyg \
-    numpy==1.21.5 scipy==1.7.3 requests==2.28.1 packaging pip \
-    openmm==7.5.1 \
-    -c pytorch -c dglteam -c pyg -c conda-forge
+#
+#RUN git clone --depth 1 --branch main https://github.com/RosettaCommons/RFDesign.git \
+#    && cd RFDesign \
+#    && wget -nv -P hallucination/weights/rf_Nov05 http://files.ipd.uw.edu/pub/rfdesign/weights/BFF_last.pt \
+#    && wget -nv -P inpainting/weights/ http://files.ipd.uw.edu/pub/rfdesign/weights/BFF_mix_epoch25.pt
+#
+#RUN conda update -n base -c defaults conda \
+#  && conda config --set ssl_verify no \
+#  && conda init bash \
+#  && conda clean -afy
+#
+## Note that we are using a different version of pytorch than recommended
+## in RFDesign readme (suggested version is pytorch=1.10.1)
+#RUN conda create -n rfdesign-cuda \
+#    python=3.8 \
+#    pytorch=1.11 \
+#    dgl-cuda11.3 \
+#    pyg \
+#    numpy==1.21.5 scipy==1.7.3 requests==2.28.1 packaging pip \
+#    openmm==7.5.1 \
+#    -c pytorch -c dglteam -c pyg -c conda-forge
 #
 #RUN /root/miniconda3/envs/rfdesign-cuda/bin/pip install \
 #        https://github.com/openmm/pdbfixer/archive/refs/tags/v1.7.tar.gz \
